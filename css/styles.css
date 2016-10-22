@@ -48,6 +48,9 @@ section, #big-header {
 ul {
 	padding-left: 0px;
 }
+body {
+	color: gray;
+}
 
 button, input[type="submit"] {
 	border-width: 0px;
@@ -55,8 +58,30 @@ button, input[type="submit"] {
 	TODO 7
 	give these buttons some padding, and color them orange with white text
 	*/
+	color: white;
+	background-color: orange;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	
 }
 
 button:disabled {
 	opacity: 0.5;
+}
+
+li.item-watchlist {
+	display: inline-block;
+	background-color: orange;
+	padding-bottom: 60px;
+	padding-top: 60px;
+	padding-left: 60px;
+	padding-right: 60px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	color: white;
+	
+	
+	
 }
