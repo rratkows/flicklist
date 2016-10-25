@@ -7,14 +7,14 @@
   TODO 3b
   add meta viewport tag
   -->
-
+	<meta name=viewport content="width=device-width, initial-scale=1">
 
   <script src="https://code.jquery.com/jquery-2.2.3.js"></script>  
 
   <!--
-  TODO 2a
-  add link to Bootstrap CDN
-  -->
+  TODO 2a -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 
   <link rel="stylesheet" href="css/styles.css"/>
 
@@ -27,13 +27,19 @@
   give the header a class of "jumbotron"
   give the inner paragraph a class of "text-muted"
   -->
+  <div class="jumbotron">
   <header>
-    <h1>FlickList</h1>
+  <h1>FlickList</h1>
+	
+	<div class="text-muted">
     <p>Keep a list of all the movies you've been meaning to watch.</p>
-  </header>
-
+	</div>
+ 
+ </header>
+  </div>
 
   <div class="main-content">
+  	<div class="row">
     <!--
     TODO 3a
     put the rest of the content (both sections) inside a div with class "row", 
@@ -46,7 +52,8 @@
     fill the entire width, with the watchlist first and the browse list below.
     -->
 
-    <section id="section-watchlist">
+    <section id="section-watchlist" class="col-lg-5">
+	
       <header>
         <h2>My Watchlist</h2>
         <hr/>
@@ -56,10 +63,10 @@
       TODO 2f
       Give this list a class of "list-inline"
       -->
-      <ul></ul>
+      <ul class="list-inline"></ul>
     </section>
 
-    <section id="section-browse">
+    <section id="section-browse" class="col-lg-7">
       <header>
         <h2>Browse Movies</h2>
 
@@ -70,9 +77,15 @@
         "input-group", "form-control", "input-group-btn", "btn", "btn-primary"
         -->
         <form id="form-search">
-          <input type="text" name="query"/>
-          <input type="submit" value="Search By Title"/>
-        </form>
+		<div class="input-group">
+
+		<input type="text" class="form-control" name="query"/>
+		  <span class="input-group-btn">
+          <input type="button" class = "btn btn-primary" value="Search By Title"/>
+		  </span>
+		</div>
+
+		  </form>
 
       </header>
 
@@ -83,8 +96,9 @@
       Use the following styles:
       "list-group", "list-group-item", "btn", "btn-primary", 
       -->
-      <ul></ul>
+      <ul class="list-group"></ul>
     </section>
+	</div>
 
   </div>
 

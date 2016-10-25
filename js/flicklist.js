@@ -9,7 +9,7 @@ var model = {
 var api = {
 
   root: "https://api.themoviedb.org/3",
-  token: "TODO", // TODO 0 add your api key
+  token: "d338baacf69c32f85b06b2467106e49b", // TODO 0 add your api key
 
   /**
    * Given a movie object, returns the url to its poster image
@@ -18,7 +18,7 @@ var api = {
     // TODO 4b
     // implement this function
 
-    return "http://images5.fanpop.com/image/photos/25100000/movie-poster-rapunzel-and-eugene-25184488-300-450.jpg" 
+    return "http://image.tmdb.org/t/p/w300/" +  movie.poster_path;
   }
 }
 
@@ -91,9 +91,28 @@ function render() {
 
     // TODO 2g
     // re-implement the li as a bootstrap panel with a heading and a body
+
+	var btnIWatchedIt = $("<button class='btn btn-danger'></button>")
+      .text("I watched it")
+      .click(function() {
+		var index = model.watchlistItems.indexOf(movie);
+		if (index > -1) {
+			model.watchlistItems.splice(index,1);
+			render();
+		}	
+		}); 
+	var imgMovie = $('<img class="img-responsive">');
+	imgMovie.attr('src',api.posterUrl(movie));
+	var itemTitle = $("<div class = 'panel-heading'></div>").append(title);
+	var itemBtn = $("<div class = 'panel body'>").append(imgMovie).append(btnIWatchedIt);
     var itemView = $("<li></li>")
-      .append(title)
-      .attr("class", "item-watchlist");
+      .append(itemTitle)
+      .append(itemBtn)
+      .attr("class", "item-watchlist panel panel-default");
+
+	
+	
+	  
 
     $("#section-watchlist ul").append(itemView);
   });
@@ -109,7 +128,7 @@ function render() {
 
     var title = $("<h4></h4>").text(movie.original_title);
 
-    var button = $("<button></button>")
+    var button = $('<button class = "btn btn-primary"></button>')
       .text("Add to Watchlist")
       .click(function() {
         model.watchlistItems.push(movie);
@@ -120,7 +139,7 @@ function render() {
     var overview = $("<p></p>").text(movie.overview);
 
     // append everything to itemView, along with an <hr/>
-    var itemView = $("<li></li>")
+    var itemView = $('<li class="list-group-item"></li>')
       .append(title)
       .append(overview)
       .append(button);
