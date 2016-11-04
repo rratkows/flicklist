@@ -8,7 +8,9 @@ var model = {
 
 var api = {
   root: "https://api.themoviedb.org/3",
-  token: "TODO", // TODO 0 add your api key
+  token: "d338baacf69c32f85b06b2467106e49b", // TODO 0 DONE add your api key
+//          d338baacf69c32f85b06b2467106e49b
+//  http://api.themoviedb.org/3/discover/movie?api_key=d338baacf69c32f85b06b2467106e49b&sort_by=popularity.desc&with_keywords=3133
   /**
    * Given a movie object, returns the url to its poster image
    */
@@ -26,11 +28,11 @@ var api = {
  * the callback function that was passed in
  */
 
-// TODO 1
+// TODO 1 DONE
 // this function should accept a second argument, `keywords`
-function discoverMovies(callback) {
+function discoverMovies(callback, keywords) {
 
-  // TODO 2 
+  // TODO 2 DONE
   // ask the API for movies related to the keywords that were passed in above
   // HINT: add another key/value pair to the `data` argument below
 
@@ -38,11 +40,13 @@ function discoverMovies(callback) {
     url: api.root + "/discover/movie",
     data: {
       api_key: api.token,
+	  with_keywords: keywords,
+
     },
-    success: function(response) {
-      model.browseItems = response.results;
-      callback(response);
-    }
+   success: function(response) {
+     model.browseItems = response.results;
+     callback(response);
+   }
   });
 }
 
@@ -55,9 +59,8 @@ function discoverMovies(callback) {
  * the API's response.
  */
 function searchMovies(query, callback) {
-  // TODO 3
+  // TODO 3 done
   // change the url so that we search for keywords, not movies
-
 
   // TODO 4
   // when the response comes back, do all the tasks below:
@@ -91,13 +94,21 @@ function searchMovies(query, callback) {
 
 
   $.ajax({
-    url: api.root + "/search/movie",
+    url: api.root + "/search/keyword",
     data: {
       api_key: api.token,
       query: query
     },
     success: function(response) {
+	  var keywordIDs = response.results.map(function(el) {
+		  return el.id;
+	  });
+	keywordsString = keywordIDs.join("|");  
       console.log(response);
+	  console.log(keywordIDs);
+	  console.log(keywordsString);
+	  discoverMovies(render,keywordsString);
+	  
     }
   });
 }
